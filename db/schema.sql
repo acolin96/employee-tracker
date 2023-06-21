@@ -8,7 +8,7 @@ CREATE TABLE department (
 );
 
 -- role table
-CREATE TABLE role (
+CREATE TABLE employee_role (
   id INT PRIMARY KEY,
   title VARCHAR(30) NOT NULL,
   salary DECIMAL(10, 2) NOT NULL,

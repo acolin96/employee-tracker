@@ -7,8 +7,14 @@ const connection = mysql.createConnection({
     user: 'your_mysql_username',
     password: 'your_mysql_password',
     database: 'employee_db',
-  });
+  },
+  
+  console.log('You are connected to the employee_db database'),
+
+  );
 
   connection.connect((err) => {
     if (err) throw err;
-    console.log('Connected to the database.')});
+    console.log('You are not connected to the database.')});
+
+
