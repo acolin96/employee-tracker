@@ -16,7 +16,7 @@ VALUES (001, 'Sr. Vice President', 350000.00, 002);
        (006, 'Jr. Associate',85000.00, 004);
 
 
-INSERT INTO employee_role (first_name, last_name, role_id, manager_id)
+INSERT INTO employee_role (first_name, last_name, role_id)
 VALUES ('Alex', 'Colin', 001, 001);
        ('Barry', 'Badrinath', 006, NULL);
        ('Himmy', 'Neutron', 002, 002);
@@ -25,3 +25,7 @@ VALUES ('Alex', 'Colin', 001, 001);
        ('Tricia', 'Anderson', 001, 005 );
        ('Lauren', 'Goldstein', 004, 001);
        ('Johnny', 'Pearseed', 006, NULL);
+
+
+INSERT INTO employee_role (first_name, last_name, role_id, manager_id)
+VALUES ('Michael', 'Jordan', 004, 001)
