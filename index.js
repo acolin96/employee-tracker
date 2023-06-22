@@ -14,7 +14,7 @@ connection.connect((err) => {
   console.log('You are connected to the employees_db database');
   generateQuestions();
 });
-
+// questions function
 function generateQuestions() {
   inquirer
     .prompt([
@@ -33,7 +33,7 @@ function generateQuestions() {
           'Exit',
         ],
       },
-    ])
+    ]) //allows the user inputs to populate the specific question
     .then((answers) => {
       switch (answers.primaryOption) {
         case 'View all departments':
