@@ -14,13 +14,13 @@ VALUES (001, 'Sr. Vice President', 350000.00, 002),
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ('Alex', 'Colin', 001),
-       ('Barry', 'Badrinath', 006, NULL),
+       ('Barry', 'Badrinath', 006),
        ('Himmy', 'Neutron', 002),
        ('Him', 'Duncan', 003),
-       ('Gerald', 'Smith', 006, NULL),
-       ('Tricia', 'Anderson', 001),
+       ('Gerald', 'Smith', 006),
+       ('Tricia', 'Anderson', 005),
        ('Lauren', 'Goldstein', 004),
-       ('Johnny', 'Pearseed', 006, NULL);
+       ('Johnny', 'Pearseed', 006);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ('Michael', 'Jordan', 004, 001);
+-- UPDATE INTO employee (first_name, last_name, role_id, manager_id)
+-- VALUES ('Michael', 'Jordan', 004, 001);

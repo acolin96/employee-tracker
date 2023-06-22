@@ -80,7 +80,7 @@ function viewAllDepartments() {
 }
 
 function viewAllRoles() {
-    connection.query('SELECT * FROM role', (err, roles) => {
+    connection.query('SELECT * FROM employee_role', (err, roles) => {
       if (err) throw err;
       console.table(roles);
       generateQuestions();
@@ -141,7 +141,7 @@ function viewAllRoles() {
       ])
       .then((answers) => {
         connection.query(
-          'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)',
+          'INSERT INTO employee_role (title, salary, department_id) VALUES (?, ?, ?)',
           [answers.roleTitle, answers.roleSalary, answers.departmentId],
           (err) => {
             if (err) throw err;
@@ -186,6 +186,36 @@ function viewAllRoles() {
           (err) => {
             if (err) throw err;
             console.log('Employee added successfully!');
+            generateQuestions();
+          }
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function updateEmployeeRole() {
+    inquirer
+      .prompt([
+        {
+          type: 'number',
+          message: 'Enter the role id of the employee you want to update:',
+          name: 'lroleId',
+        },
+        {
+          type: 'number',
+          message: 'Enter the new role ID for the employee:',
+          name: 'roleId',
+        },
+      ])
+      .then((answers) => {
+        connection.query(
+          'UPDATE employee SET role_id = ? WHERE id = ?',
+          [answers.roleId, answers.roleId],
+          (err) => {
+            if (err) throw err;
+            console.log('Employee role updated successfully!');
             generateQuestions();
           }
         );
