@@ -4,14 +4,14 @@ const inquirer = require('inquirer');
 const connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
-  user: 'your_mysql_username',
-  password: 'your_mysql_password',
-  database: 'employee_db',
+  user: 'root',
+  password: 'root',
+  database: 'employees_db',
 });
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log('You are connected to the employee_db database');
+  console.log('You are connected to the employees_db database');
   generateQuestions();
 });
 
@@ -93,4 +93,104 @@ function viewAllRoles() {
       console.table(employees);
       generateQuestions();
     });
+  }
+
+  function addDepartment() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          message: 'Enter the name of the department:',
+          name: 'departmentName',
+        },
+      ])
+      .then((answers) => {
+        connection.query(
+          'INSERT INTO department (name) VALUES (?)',
+          [answers.departmentName],
+          (err) => {
+            if (err) throw err;
+            console.log('Department added successfully!');
+            generateQuestions();
+          }
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function addRole() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          message: 'Enter the title of the role:',
+          name: 'roleTitle',
+        },
+        {
+          type: 'number',
+          message: 'Enter the salary for the role:',
+          name: 'roleSalary',
+        },
+        {
+          type: 'number',
+          message: 'Enter the department ID for the role:',
+          name: 'departmentId',
+        },
+      ])
+      .then((answers) => {
+        connection.query(
+          'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)',
+          [answers.roleTitle, answers.roleSalary, answers.departmentId],
+          (err) => {
+            if (err) throw err;
+            console.log('Role added successfully!');
+            generateQuestions();
+          }
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }  
+
+  function addEmployee() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          message: 'Enter the first name of the employee:',
+          name: 'firstName',
+        },
+        {
+          type: 'input',
+          message: 'Enter the last name of the employee:',
+          name: 'lastName',
+        },
+        {
+          type: 'number',
+          message: 'Enter the role ID for the employee:',
+          name: 'roleId',
+        },
+        {
+          type: 'number',
+          message: "Enter the manager's ID for the employee:",
+          name: 'managerId',
+        },
+      ])
+      .then((answers) => {
+        connection.query(
+          'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)',
+          [answers.firstName, answers.lastName, answers.roleId, answers.managerId],
+          (err) => {
+            if (err) throw err;
+            console.log('Employee added successfully!');
+            generateQuestions();
+          }
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
